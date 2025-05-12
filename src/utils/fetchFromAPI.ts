@@ -1,17 +1,16 @@
 import axios from "axios";
 
-const API_KEY = "KJwZZIJSFimshuivMSVGaiYzkRomp15f2vKjsnK4bKzuUzVLzA";
-export const BASE_URL = "https://youtube-v31.p.rapidapi.com";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchFromAPI = async (url: string) => {
-    const { data } = await axios.get(`${BASE_URL}/${url}`, {
-      params: {
-        maxResults: 50,
-      },
-      headers: {
-        "X-RapidAPI-Key": API_KEY,
-        "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
-      },
-    });
-    return data;
+  const { data } = await axios.get(`${BASE_URL}/${url}`, {
+    params: {
+      maxResults: 50,
+    },
+    headers: {
+      "X-RapidAPI-Key": import.meta.env.VITE_API_KEY,
+      "X-RapidAPI-Host": import.meta.env.VITE_RAPIDAPI_HOST,
+    },
+  });
+  return data;
 };

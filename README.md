@@ -1,54 +1,45 @@
-# React + TypeScript + Vite
+# 🎬 YouTube Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive and dynamic YouTube clone built using **React**, **TypeScript**, **Material UI**, and **Axios**. This app allows users to explore videos, watch content, search, and navigate through categories — simulating a real YouTube experience.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** – Frontend library for building UIs
+- **TypeScript** – Strongly typed JavaScript
+- **Material UI (MUI)** – Component library for elegant, responsive design
+- **Axios** – Promise-based HTTP client for API requests
+- **RapidAPI / YouTube API** – Used for fetching video and channel data
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### 🔍 Video Search
+- Real-time video search with auto-refresh on input change
+- Search results displayed in a grid format
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 📺 Watch Page
+- Full video player with video title, channel info, and related videos
+- Responsive layout for desktop and mobile
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 📂 Categories Sidebar
+- Category selection for filtering videos (e.g., Music, Sports, Gaming)
+- Highlighted active category
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### 📱 Responsive UI
+- Built with Material UI's responsive grid system
+- Fully optimized for mobile, tablet, and desktop screens
+
+### ⚡ Fast API Integration
+- Axios used to fetch data from YouTube API
+- Centralized API utility for easy reuse and scalability
+
+---
+
+## 📸 Preview
+
+![Screenshot](./src/assets/preview.png)
+
+## 🚀 Live Demo
+
+[🔗 View Live Demo](https://youtube-clone15.netlify.app)

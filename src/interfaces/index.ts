@@ -10,7 +10,8 @@ export interface IVideos {
     subscriberCount: string;
     hiddenSubscriberCount: boolean;
     videoCount: string;
-  }
+    likeCount:string
+  };
   snippet: {
     title: string;
     channelId: string;
@@ -38,48 +39,3 @@ export interface IVideos {
     };
   };
 }
-
-// export interface IChannel {
-//   id: string;
-//   kind: string;
-//   snippet: {
-//     title: string;
-//     description: string;
-//     customUrl?: string;
-//     publishedAt: string;
-//     thumbnails: {
-//       default: { url: string };
-//       medium: { url: string };
-//       high: { url: string };
-//     };
-//     channelTitle?: string;
-//     localized: {
-//       title: string;
-//       description: string;
-//     };
-//   };
-//   brandingSettings: {
-//     image: {
-//       bannerExternalUrl: string;
-//     };
-//     channel: {
-//       title: string;
-//       description: string;
-//       keywords: string;
-//       country: string;
-//       unsubscribedTrailer: string;
-//     };
-//   };
-//   contentDetails: {
-//     relatedPlaylists: {
-//       uploads: string;
-//       likes: string;
-//     };
-//   };
-//   statistics?: {
-//     viewCount: string;
-//     subscriberCount: string;
-//     hiddenSubscriberCount: boolean;
-//     videoCount: string;
-//   };
-// }

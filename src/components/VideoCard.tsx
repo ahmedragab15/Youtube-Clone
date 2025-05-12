@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import { Typography, Card, CardContent, CardMedia } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { demoThumbnailUrl, demoVideoUrl, demoVideoTitle, demoChannelUrl, demoChannelTitle } from "../utils/constants";
+import { formatDistanceToNow, parseISO } from "date-fns";
+
+function getTimeAgo(publishTime: string) {
+  return formatDistanceToNow(parseISO(publishTime), { addSuffix: true });
+}
 
 const VideoCard = ({ video }: { video: IVideos }) => {
   const {
@@ -13,7 +18,7 @@ const VideoCard = ({ video }: { video: IVideos }) => {
   return (
     <Card sx={{ width: { xs: "100%", sm: "358px", md: "320px" }, boxShadow: "none", borderRadius: 0 }}>
       <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
-        <CardMedia component="img" image={snippet?.thumbnails?.high?.url || demoThumbnailUrl} alt={snippet?.title} sx={{ width: { xs: "100%", sm: "358px" }, height: 180 }} />
+        <CardMedia component="img" image={snippet?.thumbnails?.high?.url || demoThumbnailUrl} alt={snippet?.title} sx={{ width: { xs: "100%", sm: "358px", md: "320px" }, height: 180 }} />
       </Link>
       <CardContent sx={{ backgroundColor: "#1e1e1e", height: "106px" }}>
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
@@ -25,6 +30,9 @@ const VideoCard = ({ video }: { video: IVideos }) => {
           <Typography variant="subtitle2" fontWeight="bold" color="gray">
             {snippet?.channelTitle || demoChannelTitle}
             <CheckCircle sx={{ fontSize: 12, color: "gray", ml: "5px" }} />
+          </Typography>
+          <Typography variant="subtitle2" fontWeight="bold" color="gray">
+            {getTimeAgo(snippet?.publishedAt)}
           </Typography>
         </Link>
       </CardContent>

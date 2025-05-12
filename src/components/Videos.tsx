@@ -2,9 +2,9 @@ import { Stack, Box, Typography } from "@mui/material";
 import type { IVideos } from "../interfaces";
 import { VideoCard, ChannelCard } from "./index";
 
-type Direction = "row" | "column"
+type Direction = "row" | "column";
 
-const Videos = ({ videos, direction }: { videos: IVideos[] , direction?: Direction }) => {
+const Videos = ({ videos, direction }: { videos: IVideos[]; direction?: Direction }) => {
   return (
     <Stack direction={direction || "row"} flexWrap={"wrap"} justifyContent={"start"} gap={2}>
       {videos?.length > 0 ? (
@@ -15,9 +15,14 @@ const Videos = ({ videos, direction }: { videos: IVideos[] , direction?: Directi
           </Box>
         ))
       ) : (
-        <Typography variant="h6" color="#fff">
-          No videos found.
-        </Typography>
+        <>
+          <Typography variant="h6" color="error">
+            API quota has been exceeded. Please try again later.
+          </Typography>
+          <Typography variant="body2" color="gray">
+            Please try again later or contact the site owner if this issue persists.
+          </Typography>
+        </>
       )}
     </Stack>
   );

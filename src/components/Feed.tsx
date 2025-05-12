@@ -3,16 +3,26 @@ import { Box, Stack, Typography } from "@mui/material";
 import { SideBar, Videos } from "./index";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import type { IVideos } from "../interfaces";
-
+import ErrorMessage from "./ErrorMessage";
 
 const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("New");
   const [videos, setVideos] = useState<IVideos[] | []>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const data = await fetchFromAPI(`search?part=snippet&q=${selectedCategory}`);
-      if (data?.items) setVideos(data.items);
+      try {
+        setError(null);
+        const data = await fetchFromAPI(`search?part=snippet&q=${selectedCategory}`);
+        setVideos(data.items);
+      } catch (err : unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Something went wrong.");
+        }
+      }
     };
     fetchVideos();
   }, [selectedCategory]);
@@ -25,12 +35,19 @@ const Feed = () => {
           Copyright © 2025 Ahmed Ragab
         </Typography>
       </Box>
+
       <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
-        <Typography variant="h4" fontWeight="bold" mb={2} sx={{ color: "white" }}>
-          {selectedCategory}
-          <span style={{ color: "#fc1503" }}> Videos</span>
-        </Typography>
-        <Videos videos={videos} />
+        {error ? (
+          <ErrorMessage message={error} />
+        ) : (
+          <>
+            <Typography variant="h4" fontWeight="bold" mb={2} sx={{ color: "white" }}>
+              {selectedCategory}
+              <span style={{ color: "#fc1503" }}> Videos</span>
+            </Typography>
+            <Videos videos={videos} />
+          </>
+        )}
       </Box>
     </Stack>
   );

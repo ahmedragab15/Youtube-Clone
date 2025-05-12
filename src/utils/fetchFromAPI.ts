@@ -14,8 +14,14 @@ export const fetchFromAPI = async (url: string) => {
       },
     });
     return data;
-  } catch (error) {
-    console.error("API Error:", error);
-    throw new Error("Something went wrong while fetching data.");
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 429 || error.message?.includes("quota")) {
+        throw new Error("API quota has been exceeded. Please try again later.");
+      }
+      throw new Error(error.response?.data?.message || "Failed to fetch data.");
+    } else {
+      throw new Error("An unexpected error occurred.");
+    }
   }
 };

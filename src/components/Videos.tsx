@@ -15,14 +15,14 @@ const Videos = ({ videos, direction }: { videos: IVideos[]; direction?: Directio
           </Box>
         ))
       ) : (
-        <>
+        <Box sx={{ textAlign: "center", mt: 5 }}>
           <Typography variant="h6" color="error">
             API quota has been exceeded. Please try again later.
           </Typography>
           <Typography variant="body2" color="gray">
             Please try again later or contact the site owner if this issue persists.
           </Typography>
-        </>
+        </Box>
       )}
     </Stack>
   );

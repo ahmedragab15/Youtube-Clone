@@ -13,9 +13,14 @@ const VideoDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetchFromAPI(`videos?part=snippet,statistics&id=${id}`).then((data) => setVideoDetail(data.items[0]));
+    const fetchDetails = async () => {
+      const videoData = await fetchFromAPI(`videos?part=snippet,statistics&id=${id}`);
+      if (videoData?.items) setVideoDetail(videoData.items[0]);
 
-    fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`).then((data) => setVideos(data.items));
+      const relatedData = await fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`);
+      if (relatedData?.items) setVideos(relatedData.items);
+    };
+    fetchDetails();
   }, [id]);
   
   if (!videoDetail?.snippet || !videoDetail?.statistics) return <Loader />;

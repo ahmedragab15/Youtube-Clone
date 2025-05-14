@@ -5,7 +5,6 @@ import { VideoCard, ChannelCard } from "./index";
 type Direction = "row" | "column";
 
 const Videos = ({ videos, direction }: { videos: IVideos[]; direction?: Direction }) => {
-  console.log("Videos Data:", videos);
   return (
     <Stack direction={direction || "row"} flexWrap={"wrap"} justifyContent={"start"} gap={2}>
       {videos?.map((item, idx) => (

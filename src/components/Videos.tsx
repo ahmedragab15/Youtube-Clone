@@ -1,12 +1,10 @@
 import { Stack, Box } from "@mui/material";
 import type { IVideos } from "../interfaces";
-import { VideoCard, ChannelCard, Loader } from "./index";
+import { VideoCard, ChannelCard } from "./index";
 
 type Direction = "row" | "column";
 
 const Videos = ({ videos, direction }: { videos: IVideos[]; direction?: Direction }) => {
-
-  if (!videos?.length) return <Loader />;
 
   return (
     <Stack direction={direction || "row"} flexWrap={"wrap"} justifyContent={"start"} gap={2}>

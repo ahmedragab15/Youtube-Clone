@@ -8,7 +8,7 @@ interface IProps {
 
 const SideBar = ({ selectedCategory, setSelectedCategory }: IProps) => {
   return (
-    <Stack direction={"row"} sx={{ overflowY: "auto", height: { sx: "auto", md: "95vh" }, flexDirection: { md: "column" } }}>
+    <Stack direction={"row"} sx={{ overflowY: "auto", height: { sx: "auto", md: "89vh" }, flexDirection: { md: "column" } }}>
       {categories.map((category) => (
         <button className="category-btn" key={category.name} style={{ background: category.name === selectedCategory ? "#fc1503" : "#000", color: "#fff" }} onClick={() => setSelectedCategory(category.name)}>
           <span style={{ color: category.name === selectedCategory ? "#fff" : "#fc1503", marginRight: "15px" }}>

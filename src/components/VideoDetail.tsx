@@ -13,21 +13,19 @@ const VideoDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchDetails = async () => {
+    (async () => {
       const videoData = await fetchFromAPI(`videos?part=snippet,statistics&id=${id}`);
       if (videoData?.items) setVideoDetail(videoData.items[0]);
 
       const relatedData = await fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`);
       if (relatedData?.items) setVideos(relatedData.items);
-    };
-    fetchDetails();
+    })()
   }, [id]);
   
   if (!videoDetail?.snippet || !videoDetail?.statistics) return <Loader />;
 
   const { snippet: { title,channelId ,channelTitle }, statistics: { viewCount, likeCount } } = videoDetail;
   
-
   return (
     <Box minHeight="95vh">
       <Stack direction={{ xs: "column", md: "row" }} >
